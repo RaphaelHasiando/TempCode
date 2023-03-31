@@ -1,11 +1,6 @@
-# 6.4 Latihan
+# Reverse
 
-# Konsep LinkedList jika Menambahi (append) Node baru
-# class Node:
-#     def __init__(self, value):
-#         self.value = value
-#         self.next = {self.value = value
-#                     {self.next = None
+# 6.5 Tugas
 
 class Node:
     def __init__(self, value):
@@ -76,9 +71,28 @@ class LinkedList:
             return True
         return False
 
-node1 = LinkedList("Saya")
-node1.append("Adalah")
-node1.insert(2,"Raphael Hasiando Sihotang")
-node1.prepend("Nama")
-node1.set(3,"Jofran Albhinata")
-node1.print_list()
+    def reverse(self):
+        newTail = self.tail
+        newHead = self.head
+        self.head = newTail
+        self.tail = newHead
+
+        temp = None
+        tempTail = self.tail
+        while tempTail:
+            nextNode = tempTail.next
+            tempTail.next = temp
+            temp = tempTail
+            tempTail = nextNode
+
+        return temp
+
+node2 = LinkedList(2)
+node2.append(3)
+node2.append(4)
+node2.append(5)
+node2.append(6)
+node2.print_list()
+print("=========")
+node2.reverse()
+node2.print_list()
