@@ -1,0 +1,84 @@
+# 6.4 Latihan
+
+# Konsep LinkedList jika Menambahi (append) Node baru
+# class Node:
+#     def __init__(self, value):
+#         self.value = value
+#         self.next = {self.value = value
+#                     {self.next = None
+
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class LinkedList:
+    def __init__(self, value):
+        new_node = Node(value)
+        self.head = new_node
+        self.tail = new_node
+        self.length = 1
+
+    def print_list(self):
+        temp = self.head
+        while temp is not None:
+            print(temp.value)
+            temp = temp.next
+
+    def append(self, value):
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+        self.length += 1
+        return True
+
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+
+    def insert(self, index, value):
+        if index < 0 or index > self.length:
+            return False
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+        new_node = Node(value)
+        temp = self.get(index - 1)
+        new_node.next = temp.next
+        temp.next = new_node
+        self.length += 1
+        return True
+
+    def prepend(self, value):
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+        self.length += 1
+        return True
+
+    def set(self, index, value):
+        temp = self.get(index )
+        if temp:
+            temp.value = value
+            return True
+        return False
+
+node1 = LinkedList("Saya")
+node1.append("Adalah")
+node1.insert(2,"Raphael Hasiando Sihotang")
+node1.prepend("Nama")
+node1.set(3,"Jofran Albhinata")
+node1.print_list()
